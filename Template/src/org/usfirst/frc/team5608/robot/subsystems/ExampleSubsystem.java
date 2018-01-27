@@ -7,7 +7,7 @@
 
 package org.usfirst.frc.team5608.robot.subsystems;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
+import org.usfirst.frc.team5608.robot.command.Subsystem;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
