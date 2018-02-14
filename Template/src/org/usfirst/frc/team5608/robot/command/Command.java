@@ -13,8 +13,6 @@ import org.usfirst.frc.team5608.robot.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
 
 /**
- * TODO: Remove import subsystem, change to own.
- * 
  * The Command class is at the very core of the entire command framework. Every command can be
  * started with a call to {@link Command#start() start()}. Once a command is started it will call
  * {@link Command#initialize() initialize()}, and then will repeatedly call {@link Command#execute()
