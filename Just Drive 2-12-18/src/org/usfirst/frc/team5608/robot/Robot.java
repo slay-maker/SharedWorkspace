@@ -11,10 +11,10 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
 @SuppressWarnings({ "deprecation", "unused" })
 public class Robot extends SampleRobot {
-	private TalonSRX left = new TalonSRX(1);
-	private TalonSRX right = new TalonSRX(2);
-	private Joystick leftS = new Joystick(0);
-	private Joystick rightS = new Joystick(1);
+	private TalonSRX leftWheel = new TalonSRX(1);
+	private TalonSRX rightWheel = new TalonSRX(2);
+	private Joystick leftJoystick = new Joystick(0);
+	private Joystick rightJoystick = new Joystick(1);
 	public Robot() {
 	}
 	@Override
@@ -28,17 +28,17 @@ public class Robot extends SampleRobot {
 		double l;
 		double r;
 		while (isOperatorControl() && isEnabled()) {
-			l = leftS.getY();
-			r = rightS.getY();
+			l = leftJoystick.getY();
+			r = rightJoystick.getY();
 			if(l < 0) {
-				left.set(ControlMode.PercentOutput, -Math.pow(l, 2));
+				leftWheel.set(ControlMode.PercentOutput, -Math.pow(l, 2));
 			} else {
-				left.set(ControlMode.PercentOutput, Math.pow(-l, 2));
+				leftWheel.set(ControlMode.PercentOutput, Math.pow(-l, 2));
 			}
 			if(r < 0) {
-				right.set(ControlMode.PercentOutput, Math.pow(r, 2));
+				rightWheel.set(ControlMode.PercentOutput, Math.pow(r, 2));
 			} else {
-				right.set(ControlMode.PercentOutput, -Math.pow(-r, 2));
+				rightWheel.set(ControlMode.PercentOutput, -Math.pow(-r, 2));
 			}
 		}
 	}
