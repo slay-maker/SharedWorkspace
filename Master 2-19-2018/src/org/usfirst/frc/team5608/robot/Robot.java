@@ -138,18 +138,18 @@ public class Robot extends SampleRobot {
 	@Override
 	public void operatorControl() {
 		m_robotDrive.setSafetyEnabled(true);
-		while (isOperatorControl() && isEnabled()) {
-			SmartDashboard.putNumber("Gyro-X", imu.getAngleX());
-			SmartDashboard.putNumber("Gyro-Y", imu.getAngleY());
-			SmartDashboard.putNumber("Gyro-Z", imu.getAngleZ());
-			SmartDashboard.putNumber("Accel-X", imu.getAccelX());
-			SmartDashboard.putNumber("Accel-Y", imu.getAccelY());
-			SmartDashboard.putNumber("Accel-Z", imu.getAccelZ());
-			SmartDashboard.putNumber("Pitch", imu.getPitch());
-			SmartDashboard.putNumber("Roll", imu.getRoll());
-			SmartDashboard.putNumber("Yaw", imu.getYaw());
-			SmartDashboard.putNumber("Pressure: ", imu.getBarometricPressure());
-			SmartDashboard.putNumber("Temperature: ", imu.getTemperature()); 
+		while (isOperatorControl() && isEnabled()) { 
+			System.out.println("Gyro-X: " + imu.getAngleX());
+			System.out.println("Gyro-Y: " + imu.getAngleY());
+			System.out.println("Gyro-Z: " + imu.getAngleZ());
+			System.out.println("Accel-X: " + imu.getAccelX());
+			System.out.println("Accel-Y: " + imu.getAccelY());
+			System.out.println("Accel-Z: " + imu.getAccelZ());
+			System.out.println("Pitch: " + imu.getPitch());
+			System.out.println("Roll: " + imu.getRoll());
+			System.out.println("Yaw: " + imu.getYaw());
+			System.out.println("Pressure: " + imu.getBarometricPressure());
+			System.out.println("Temperature: " + imu.getTemperature());
 			Timer.delay(0.005);
 		}
 	}

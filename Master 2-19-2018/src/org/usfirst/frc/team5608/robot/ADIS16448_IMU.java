@@ -36,11 +36,11 @@ public class ADIS16448_IMU extends GyroBase implements Gyro, PIDSource, Sendable
   private static final int kRegSENS_AVG = 0x38;
   private static final int kRegMSC_CTRL = 0x34;
   private static final int kRegPROD_ID = 0x56;
-  //private static final int kRegLOT_ID2 = 0x54;
-  //private static final int kRegLOT_ID1 = 0x52;
-  //private static final int kRegSERIAL_NUM = 0x58;
-  //private static final int kRegZGYRO_OFF = 0x1E;
-  //private static final int kRegYGYRO_OFF = 0x1C;
+  private static final int kRegLOT_ID2 = 0x54;
+  private static final int kRegLOT_ID1 = 0x52;
+  private static final int kRegSERIAL_NUM = 0x58;
+  private static final int kRegZGYRO_OFF = 0x1E;
+  private static final int kRegYGYRO_OFF = 0x1C;
   private static final int kRegXGYRO_OFF = 0x1A;
 
   public enum AHRSAlgorithm { kComplementary, kMadgwick }
@@ -266,15 +266,15 @@ public class ADIS16448_IMU extends GyroBase implements Gyro, PIDSource, Sendable
     readRegister(kRegPROD_ID); // dummy read
     
     // Validate the product ID
-    if (readRegister(kRegPROD_ID) != 16448) {
-      m_spi.free();
-      m_spi = null;
-      m_samples = null;
-      m_samples_mutex = null;
-      m_samples_not_empty = null;
-      DriverStation.reportError("could not find ADIS16448", false);
-      return;
-    }
+//    if (readRegister(kRegPROD_ID) != 16448) {
+//      m_spi.free();
+//      m_spi = null;
+//      m_samples = null;
+//      m_samples_mutex = null;
+//      m_samples_not_empty = null;
+//      DriverStation.reportError("could not find ADIS16448", false);
+//      return;
+//    }
 
     // Set IMU internal decimation to 102.4 SPS
     writeRegister(kRegSMPL_PRD, 0x0301);
