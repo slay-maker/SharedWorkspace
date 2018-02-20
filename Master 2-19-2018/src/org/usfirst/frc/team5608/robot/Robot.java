@@ -36,7 +36,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends SampleRobot {
 	private static final String kDefaultAuto = "Default";
 	private static final String kCustomAuto = "My Auto";
-	public static final ADIS16448_IMU imu = new ADIS16448_IMU();
+	public ADIS16448_IMU imu = new ADIS16448_IMU();
 	private DifferentialDrive m_robotDrive
 	= new DifferentialDrive(new Spark(0), new Spark(1));
 	private Joystick m_stick = new Joystick(0);
@@ -51,6 +51,7 @@ public class Robot extends SampleRobot {
 		m_chooser.addDefault("Default Auto", kDefaultAuto);
 		m_chooser.addObject("My Auto", kCustomAuto);
 		SmartDashboard.putData("Auto modes", m_chooser);
+		//imu.initSendable(builder);
 	}
 
 	/**
@@ -139,17 +140,17 @@ public class Robot extends SampleRobot {
 	public void operatorControl() {
 		m_robotDrive.setSafetyEnabled(true);
 		while (isOperatorControl() && isEnabled()) { 
-			System.out.println("Gyro-X: " + imu.getAngleX());
-			System.out.println("Gyro-Y: " + imu.getAngleY());
-			System.out.println("Gyro-Z: " + imu.getAngleZ());
-			System.out.println("Accel-X: " + imu.getAccelX());
-			System.out.println("Accel-Y: " + imu.getAccelY());
-			System.out.println("Accel-Z: " + imu.getAccelZ());
-			System.out.println("Pitch: " + imu.getPitch());
-			System.out.println("Roll: " + imu.getRoll());
-			System.out.println("Yaw: " + imu.getYaw());
-			System.out.println("Pressure: " + imu.getBarometricPressure());
-			System.out.println("Temperature: " + imu.getTemperature());
+			SmartDashboard.putNumber("Gyro-X", imu.getAngleX());
+		    SmartDashboard.putNumber("Gyro-Y", imu.getAngleY());
+		    SmartDashboard.putNumber("Gyro-Z", imu.getAngleZ());
+		    SmartDashboard.putNumber("Accel-X", imu.getAccelX());
+		    SmartDashboard.putNumber("Accel-Y", imu.getAccelY());
+		    SmartDashboard.putNumber("Accel-Z", imu.getAccelZ());
+		    SmartDashboard.putNumber("Pitch", imu.getPitch());
+		    SmartDashboard.putNumber("Roll", imu.getRoll());
+		    SmartDashboard.putNumber("Yaw", imu.getYaw());
+		    SmartDashboard.putNumber("Pressure: ", imu.getBarometricPressure());
+		    SmartDashboard.putNumber("Temperature: ", imu.getTemperature()); 
 			Timer.delay(0.005);
 		}
 	}
