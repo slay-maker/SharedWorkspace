@@ -1,0 +1,67 @@
+System.out.println("Gyro-X: " + imu.getAngleX());
+System.out.println("Gyro-Y: " + imu.getAngleY());
+System.out.println("Gyro-Z: " + imu.getAngleZ());
+System.out.println("Accel-X: " + imu.getAccelX());
+System.out.println("Accel-Y: " + imu.getAccelY());
+System.out.println("Accel-Z: " + imu.getAccelZ());
+System.out.println("Pitch: " + imu.getPitch());
+System.out.println("Roll: " + imu.getRoll());
+System.out.println("Yaw: " + imu.getYaw());
+System.out.println("Pressure: " + imu.getBarometricPressure());
+System.out.println("Temperature: " + imu.getTemperature());
+
+Attack:
+	axis x: 0 left and right
+	axis y: 1 forward and back
+	axis z :2 
+Extreme:
+	axis x: 0
+	axis y: 1
+	rotate z: 2
+	slider: 3
+Logitech Gamepad
+	axis LX: 0
+	axis LY: 1
+	LTrigger: 2
+	RTrigger: 3
+	RXAxis: 4
+	RYAxis: 5
+	Button 1: A
+	Button 2: B
+	button 3: X
+	button 4: Y
+	button 5: Left bumper
+	button 6: Right Bumper
+	button 7: back button
+	button 8: start
+	button 9: left stick pushed down
+	buton 10: right stick pushed down
+Xbox
+	axis LX : x-axis
+	axis LY : y-axis
+	axis RX : 4
+	axis RY : 5
+	axis DpX: 6
+	axis DpY: 7
+	axis Trigger: 3
+	axis LT: 9
+	axis RT: 10
+	button A: 0
+	button B: 1
+	button X: 2
+	button Y: 3
+	button LB: 4
+	button RB: 5
+	button BACK: 6
+	button START: 7 
+	button LS: 8 (click)
+	button RS: 9 (click)
+	
+Default arcade drive:
+while (isOperatorControl() && isEnabled()) {
+	// Drive arcade style
+	m_robotDrive.arcadeDrive(-extreme.getY(), extreme.getX());
+	
+	// The motors will be updated every 5ms
+	Timer.delay(0.005);
+}
