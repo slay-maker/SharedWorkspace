@@ -36,9 +36,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends SampleRobot {
 	private static final String kDefaultAuto = "Default";
 	private static final String kCustomAuto = "My Auto";
-
+	public static final ADIS16448_IMU imu = new ADIS16448_IMU();
 	private DifferentialDrive m_robotDrive
-			= new DifferentialDrive(new Spark(0), new Spark(1));
+	= new DifferentialDrive(new Spark(0), new Spark(1));
 	private Joystick m_stick = new Joystick(0);
 	private SendableChooser<String> m_chooser = new SendableChooser<>();
 
@@ -102,23 +102,23 @@ public class Robot extends SampleRobot {
 		m_robotDrive.setSafetyEnabled(false);
 
 		switch (autoSelected) {
-			case kCustomAuto:
-				// Spin at half speed for two seconds
-				m_robotDrive.arcadeDrive(0.0, 0.5);
-				Timer.delay(2.0);
+		case kCustomAuto:
+			// Spin at half speed for two seconds
+			m_robotDrive.arcadeDrive(0.0, 0.5);
+			Timer.delay(2.0);
 
-				// Stop robot
-				m_robotDrive.arcadeDrive(0.0, 0.0);
-				break;
-			case kDefaultAuto:
-			default:
-				// Drive forwards for two seconds
-				m_robotDrive.arcadeDrive(-0.5, 0.0);
-				Timer.delay(2.0);
+			// Stop robot
+			m_robotDrive.arcadeDrive(0.0, 0.0);
+			break;
+		case kDefaultAuto:
+		default:
+			// Drive forwards for two seconds
+			m_robotDrive.arcadeDrive(-0.5, 0.0);
+			Timer.delay(2.0);
 
-				// Stop robot
-				m_robotDrive.arcadeDrive(0.0, 0.0);
-				break;
+			// Stop robot
+			m_robotDrive.arcadeDrive(0.0, 0.0);
+			break;
 		}
 	}
 
@@ -139,10 +139,17 @@ public class Robot extends SampleRobot {
 	public void operatorControl() {
 		m_robotDrive.setSafetyEnabled(true);
 		while (isOperatorControl() && isEnabled()) {
-			// Drive arcade style
-			m_robotDrive.arcadeDrive(-m_stick.getY(), m_stick.getX());
-
-			// The motors will be updated every 5ms
+			SmartDashboard.putNumber("Gyro-X", imu.getAngleX());
+			SmartDashboard.putNumber("Gyro-Y", imu.getAngleY());
+			SmartDashboard.putNumber("Gyro-Z", imu.getAngleZ());
+			SmartDashboard.putNumber("Accel-X", imu.getAccelX());
+			SmartDashboard.putNumber("Accel-Y", imu.getAccelY());
+			SmartDashboard.putNumber("Accel-Z", imu.getAccelZ());
+			SmartDashboard.putNumber("Pitch", imu.getPitch());
+			SmartDashboard.putNumber("Roll", imu.getRoll());
+			SmartDashboard.putNumber("Yaw", imu.getYaw());
+			SmartDashboard.putNumber("Pressure: ", imu.getBarometricPressure());
+			SmartDashboard.putNumber("Temperature: ", imu.getTemperature()); 
 			Timer.delay(0.005);
 		}
 	}
